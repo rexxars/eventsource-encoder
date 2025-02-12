@@ -22,10 +22,6 @@ export function encode(chunk: EventSourceChunk): string {
  * @public
  */
 export function encodeData(text: string): string {
-  if (!text) {
-    return ''
-  }
-
   const data = `${text}`.replace(NEWLINES_RE, '\n')
   const lines = data.split(/\n/)
 

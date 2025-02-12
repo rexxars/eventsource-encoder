@@ -22,6 +22,10 @@ test('encode(): data + event + retry + id', () => {
   )
 })
 
+test('encode(): empty string as data sends empty data chunk', () => {
+  expect(encode({event: 'empty', data: ''})).toEqual('event: empty\ndata: \n\n')
+})
+
 test('encode(): multiline data', () => {
   expect(encode({data: 'what\nto\ndo'})).toEqual('data: what\ndata: to\ndata: do\n\n')
 })

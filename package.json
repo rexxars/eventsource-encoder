@@ -5,7 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.esm.js",
+  "module": "./dist/index.js",
   "main": "./dist/index.cjs",
   "exports": {
     ".": {
@@ -49,20 +49,20 @@
     "server-sent-events"
   ],
   "devDependencies": {
-    "@sanity/pkg-utils": "^6.10.9",
+    "@sanity/pkg-utils": "^7.0.4",
     "@sanity/semantic-release-preset": "^5.0.0",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-sanity": "^7.1.2",
-    "prettier": "^3.3.3",
+    "eslint-config-sanity": "^7.1.4",
+    "prettier": "^3.5.0",
     "rimraf": "^6.0.1",
-    "rollup-plugin-visualizer": "^5.12.0",
-    "semantic-release": "^24.0.0",
-    "typescript": "^5.5.4",
-    "vitest": "^2.0.5"
+    "rollup-plugin-visualizer": "^5.14.0",
+    "semantic-release": "^24.2.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
   },
   "homepage": "https://github.com/rexxars/eventsource-encoder#readme",
   "bugs": {

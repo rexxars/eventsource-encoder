@@ -1,6 +1,6 @@
 {
   "name": "eventsource-encoder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Encodes events as well-formed EventSource/Server Sent Event (SSE) messages",
   "sideEffects": false,
   "type": "module",

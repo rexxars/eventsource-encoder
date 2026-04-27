@@ -29,7 +29,7 @@ export function encodeData(text: string): string {
   let output = ''
 
   for (let i = 0, numLines = lines.length; i < numLines; ++i) {
-    line = lines[i]
+    line = lines[i] || ''
 
     output += `data: ${line}`
     output += i + 1 === numLines ? '\n\n' : '\n'

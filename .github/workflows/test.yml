@@ -44,6 +44,9 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
+          cache: true
+      - name: Install dependencies
+        run: deno install
       - name: Run tests
         run: npm run test:deno
 

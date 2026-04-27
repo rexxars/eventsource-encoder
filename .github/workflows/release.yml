@@ -29,6 +29,13 @@ jobs:
     name: 'Release: Publish to NPM'
     if: always() && github.event.inputs.release == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      # Required for npm trusted publishing via OIDC
+      id-token: write
+      # Required for semantic-release to push tags and create GitHub releases
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -39,6 +46,9 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
+          registry-url: 'https://registry.npmjs.org'
+      # npm trusted publishing requires npm >= 11.5.1
+      - run: npm install -g npm@latest
       - run: npm ci
         # Branches that will release new versions are defined in .releaserc.json
       - run: npx semantic-release
@@ -47,4 +57,3 @@ jobs:
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

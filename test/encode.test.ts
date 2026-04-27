@@ -73,3 +73,27 @@ test('encodeComment(): with newlines', () => {
 test('encodeComment(): with newlines and carriage returns', () => {
   expect(encodeComment('nei\r\ndette')).toEqual(': nei\n: dette\n\n')
 })
+
+test('encode(): rejects event field containing line feed', () => {
+  expect(() => encode({event: 'message\ndata: pwned', data: 'hi'})).toThrow(TypeError)
+})
+
+test('encode(): rejects event field containing carriage return', () => {
+  expect(() => encode({event: 'message\rdata: pwned', data: 'hi'})).toThrow(TypeError)
+})
+
+test('encode(): rejects event field containing CRLF', () => {
+  expect(() => encode({event: 'message\r\ndata: pwned', data: 'hi'})).toThrow(TypeError)
+})
+
+test('encode(): rejects string id field containing line feed', () => {
+  expect(() => encode({id: 'a\nevent: alert', data: 'hi'})).toThrow(TypeError)
+})
+
+test('encode(): rejects string id field containing carriage return', () => {
+  expect(() => encode({id: 'a\revent: alert', data: 'hi'})).toThrow(TypeError)
+})
+
+test('encode(): rejects string id field containing CRLF', () => {
+  expect(() => encode({id: 'a\r\nevent: alert', data: 'hi'})).toThrow(TypeError)
+})

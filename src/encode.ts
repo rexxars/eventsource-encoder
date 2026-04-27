@@ -53,6 +53,7 @@ export function encodeComment(comment: string): string {
 function encodeMessage(message: Partial<EventSourceMessage>): string {
   let output = ''
   if (message.event) {
+    assertSingleLine('event', message.event)
     output += `event: ${message.event}\n`
   }
 
@@ -61,6 +62,9 @@ function encodeMessage(message: Partial<EventSourceMessage>): string {
   }
 
   if (typeof message.id === 'string' || typeof message.id === 'number') {
+    if (typeof message.id === 'string') {
+      assertSingleLine('id', message.id)
+    }
     output += `id: ${message.id}\n`
   }
 
@@ -73,4 +77,12 @@ function encodeMessage(message: Partial<EventSourceMessage>): string {
   }
 
   return output
+}
+
+function assertSingleLine(field: 'event' | 'id', value: string): void {
+  if (/[\r\n]/.test(value)) {
+    throw new TypeError(
+      `EventSource \`${field}\` field must not contain newline characters (CR/LF)`,
+    )
+  }
 }
